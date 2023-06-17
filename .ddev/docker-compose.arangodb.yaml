@@ -1,0 +1,36 @@
+#ddev-generated
+---
+services:
+  arangodb:
+    container_name: "ddev-${DDEV_SITENAME}-arangodb"
+    build:
+      context: './arangodb-build'
+      args:
+        BASE_IMAGE: arangodb/arangodb:3.10.2
+    environment:
+      - VIRTUAL_HOST=$DDEV_HOSTNAME
+      - HTTP_EXPOSE=8529:8529
+      - ARANGO_NO_AUTH=1
+      - ARANGO_ROOT_PASSWORD="db"
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: ${DDEV_APPROOT}
+    volumes:
+      - ".:/mnt/ddev_config"
+      - "..:/var/www/html"
+      - type: "volume"
+        source: "arangodb3data"
+        target: "/var/lib/arangodb3"
+        volume:
+          nocopy: true
+      - type: "volume"
+        source: "arangodb3apps"
+        target: "/var/lib/arangodb3-apps"
+        volume:
+          nocopy: true
+
+volumes:
+  arangodb3data:
+    name: "ddev-${DDEV_SITENAME}_arangodb3data"
+  arangodb3apps:
+    name: "ddev-${DDEV_SITENAME}_arangodb3apps"

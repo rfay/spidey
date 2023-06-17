@@ -1,0 +1,14 @@
+name: ddev-spidergram
+repository: ../ddev-spidergram/
+version: ""
+install_date: "2023-06-16T18:54:09-06:00"
+project_files:
+    - commands/arangodb/arangodump
+    - commands/arangodb/arangorestore
+    - commands/web/spidergram
+    - web-build/Dockerfile.spidergram
+    - docker-compose.arangodb.yaml
+    - spidergram.config.yaml
+    - config.ddev-spidergram.yaml
+global_files: []
+removal_actions: []
